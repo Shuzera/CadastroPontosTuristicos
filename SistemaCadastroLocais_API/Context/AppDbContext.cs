@@ -13,10 +13,10 @@ namespace SistemaCadastroLocais_API.Context
     public class AppDbContext : DbContext
     {
         //Construtor da classe AppDbContext
-        //public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
-        //{
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        {
 
-        //}
+        }
         public DbSet<TB_PontosTuristicos> locais { get; set; }
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
