@@ -39,9 +39,22 @@ namespace SistemaCadastroLocais_API.Controllers
             }
 
             return tB_Locais;
-        }
+        }  
+        
+        // GET: api/LocaisNome
+        [HttpGet("{nome}")]
+        public async Task<ActionResult<TB_PontosTuristicos>> GetTB_LocaisNome(string nome)
+        {
+            var tB_Locais = await _context.locais.FindAsync(nome);
+         
+            if (tB_Locais == null)
+            {
+                return NotFound();
+            }
 
-        // PUT: api/Locais/5
+            return tB_Locais;
+        } 
+
 
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTB_Locais(int id, TB_PontosTuristicos tb_PontosTuristicos)
