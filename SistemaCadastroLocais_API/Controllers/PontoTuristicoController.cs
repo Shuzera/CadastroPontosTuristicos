@@ -9,53 +9,45 @@ using System.Threading.Tasks;
 
 namespace SistemaCadastroLocais_API.Controllers
 {
+
+    //Caminho da URL
     [Route("api/[controller]")]
     [ApiController]
+    
     public class PontoTuristicoController : ControllerBase
     {
         private readonly AppDbContext _context;
 
+        //Instanciando construtor e referenciando o context
         public PontoTuristicoController(AppDbContext context)
         {
             _context = context;
-        }
+        } // Fim do construtor
 
         // GET: api/Locais
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TB_PontosTuristicos>>> GetLocais()
+        public async Task<ActionResult<IEnumerable<TB_PontosTuristicos>>> GetLocais(string search)
         {
-            return await _context.locais.ToListAsync();
+
+            if (string.IsNullOrEmpty(search))
+                search = "";
+
+            var list = _context.locais.Where(x => x.Nome.Contains(search));
+
+            return Ok(list);
         }
 
-        // GET: api/Locais/5
+    
         [HttpGet("{id}")]
-        public async Task<ActionResult<TB_PontosTuristicos>> GetTB_Locais(int id)
+        public async Task<ActionResult<TB_PontosTuristicos>>GetTB_Locais(int id)
         {
-            var tB_Locais = await _context.locais.FindAsync(id);
 
-            if (tB_Locais == null)
-            {
-                return NotFound();
-            }
+            var retorno = _context.locais.FirstOrDefault(x => x.LocaisId == id);
 
-            return tB_Locais;
+            return Ok(retorno);
         }  
         
-        // GET: api/LocaisNome
-        [HttpGet("{nome}")]
-        public async Task<ActionResult<TB_PontosTuristicos>> GetTB_LocaisNome(string nome)
-        {
-            var tB_Locais = await _context.locais.FindAsync(nome);
-         
-            if (tB_Locais == null)
-            {
-                return NotFound();
-            }
-
-            return tB_Locais;
-        } 
-
-
+        
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTB_Locais(int id, TB_PontosTuristicos tb_PontosTuristicos)
         {

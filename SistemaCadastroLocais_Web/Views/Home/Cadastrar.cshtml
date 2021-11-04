@@ -1,0 +1,82 @@
+﻿@model SistemaCadastroLocais_Web.Models.TB_PontosTuristicos
+
+@{
+    ViewBag.Title = "Cadastrar";
+}
+
+<h2>Novo ponto turistico</h2>
+
+<hr />
+
+<!--enctype - > aceita enviar img para o servidor-->
+
+@using (Html.BeginForm("Cadastrar", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken();
+    //evitar que se falsifique o envio de dados para o servidor
+
+    <div class="form-group">
+
+        @*@class é o bootstrap*@
+        @Html.LabelFor(m => m.Nome, new { @class = "control-label col-md-2" })
+
+        <div class="col-md-10">
+
+            @Html.TextBoxFor(m => m.Nome, new { @class = "form-control", @placehold = "Nome" })
+            @Html.ValidationMessageFor(m => m.Nome, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Endereco, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            @Html.TextBoxFor(m => m.Endereco, new { @class = "form-control", @placehold = "Endereco" })
+            @Html.ValidationMessageFor(m => m.Endereco, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Cidade, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            @Html.TextBoxFor(m => m.Cidade, new { @class = "form-control", @placehold = "Cidade" })
+            @Html.ValidationMessageFor(m => m.Cidade, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Estado, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            @Html.TextBoxFor(m => m.Estado, new { @class = "form-control", @placehold = "Estado" })
+            @Html.ValidationMessageFor(m => m.Estado, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Pais, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            @Html.TextBoxFor(m => m.Pais, new { @class = "form-control", @placehold = "Estado" })
+            @Html.ValidationMessageFor(m => m.Pais, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-success" />
+
+            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-danger" })
+
+        </div>
+    </div>
+
+}
+

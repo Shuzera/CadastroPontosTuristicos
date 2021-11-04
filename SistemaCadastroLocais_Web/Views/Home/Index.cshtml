@@ -1,8 +1,52 @@
-﻿@{
+﻿@model IEnumerable<SistemaCadastroLocais_Web.Models.TB_PontosTuristicos>
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Lista de pontos turisticos</h1>
 </div>
+<p>
+    @Html.ActionLink("Cadastrar", "Cadastrar")
+</p>
+
+<div>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <p>Digite o nome do ponto turistico</p>
+        <input type="text" name="texto" id="texto" placeholder="Digite a pesquisa" />
+        <button type="submit">Filtrar</button>
+    }
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Locais ID</th>
+            <th>Nome</th>
+            <th>Endereço</th>
+            <th>Cidade</th>
+            <th>Estado</th>
+            <th>Pais</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+             @foreach (var item in Model) {
+                <tr>
+                    <td>@item.LocaisId</td>
+                    <td>@item.Nome</td>
+                    <td>@item.Endereco</td>
+                    <td>@item.Cidade</td>
+                    <td>@item.Estado</td>
+                    <td>@item.Pais</td>
+
+                    <td>
+                        @Html.ActionLink("Atualizar ", "Atualizar", new { id = item.LocaisId})|
+                        @Html.ActionLink("Remover ", "Delete", new { id = item.LocaisId})
+                    </td>
+                </tr>
+             }
+        </tr>
+    </tbody>
+</table>

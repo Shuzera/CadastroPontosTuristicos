@@ -1,0 +1,67 @@
+﻿@model SistemaCadastroLocais_Web.Models.TB_PontosTuristicos
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Person</h2>
+
+<hr />
+
+@using (Html.BeginForm("Atualizar", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken();
+
+    @Html.HiddenFor(m => m.LocaisId)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Nome, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Nome, new { @class = "form-control", @placeholder = "Nome" })
+            @Html.ValidationMessageFor(m => m.Nome, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Endereco, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Endereco, new { @class = "form-control", @placeholder = "Endereco" })
+            @Html.ValidationMessageFor(m => m.Endereco, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Cidade, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Cidade, new { @class = "form-control", @placeholder = "Cidade" })
+            @Html.ValidationMessageFor(m => m.Cidade, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Estado, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Estado, new { @class = "form-control", @placeholder = "Estado" })
+            @Html.ValidationMessageFor(m => m.Estado, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Pais, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Pais, new { @class = "form-control", @placeholder = "Pais" })
+            @Html.ValidationMessageFor(m => m.Pais, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Atualizar" class="btn btn-success" />
+            @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
+        </div>
+    </div>
+}
+
+@section Scripts{
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+}

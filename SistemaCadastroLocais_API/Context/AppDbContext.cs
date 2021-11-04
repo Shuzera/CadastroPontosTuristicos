@@ -17,8 +17,11 @@ namespace SistemaCadastroLocais_API.Context
         {
 
         }
+
+        //É o objeto que recebe a estrutura da tabela vindo de Models
         public DbSet<TB_PontosTuristicos> locais { get; set; }
         
+        //Adicionando AppSettings.Json e fazendo a conexão com o banco de dados através da ConnectionString
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
